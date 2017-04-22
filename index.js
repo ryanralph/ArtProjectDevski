@@ -20,14 +20,14 @@ app.route('/').get(function(req, res) {
 
 app.route('/echo').get(function(req, res) {
 	console.log('GOT /echo')
-	res.json(req)
-	console.log(req)
+	res.json(req.body)
+	console.log(req.body)
 })
 
 app.route('/echo').post(function(req, res) {
 	console.log('POST /echo')
-	res.json(req)
-	console.log(req)
+	res.json(req.body)
+	console.log(JSON.stringify(req.body))
 })
 
 app.route('/location/:id').get(function(req, res) {
