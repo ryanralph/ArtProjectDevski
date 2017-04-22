@@ -24,6 +24,12 @@ app.route('/echo').get(function(req, res) {
 	console.log(req)
 })
 
+app.route('/echo').post(function(req, res) {
+	console.log('POST /echo')
+	res.json(req)
+	console.log(req)
+})
+
 app.route('/location/:id').get(function(req, res) {
 	locationId = req.params.id
 	console.log('GOT /location/' + locationId)
