@@ -24,6 +24,16 @@ app.route('/echo').post(function(req, res) {
 	console.log(JSON.stringify(req.body.data))
 })
 
+app.route('/location/all').get(function(req, res) {
+	console.log('GOT /location/all')
+	returnVal = {"status": "OK",
+					"locationId": "all",
+					"sensorState": sensorStates}
+	res.json(returnVal)
+	console.log(returnVal)
+	returnVal = {}
+})
+
 app.route('/location/:id').get(function(req, res) {
 	locationId = req.params.id
 	console.log('GOT /location/' + locationId)
@@ -49,7 +59,7 @@ app.route('/location/:id').post(function(req, res) {
 			sensorStates[locationId] = sensorState
 			returnVal = {"status": "OK",
 							"locationId": locationId,
-							"sensorState": sensorStates[locationId]}
+							"sensorStates": sensorStates}
 		}
 	}
 	res.json(returnVal)
