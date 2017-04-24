@@ -38,27 +38,18 @@ app.route('/location/:id').get(function(req, res) {
 app.route('/location/:id').post(function(req, res) {
 	console.log('POST /location/' + req.params.id)
 	var data = JSON.parse(req.body.data)
-	if(!data.locationId) {
-		returnVal = {"status": "WRONGPARAMS"}
-		console.log(req.body['data'])
+	locationId = data.locationId
+	if(locationId > ((sensorStates.length)-1)) {
+		returnVal = {"status": "ILLEGALLOCATION"}
 	} else {
-		if(!data.sensorState) {
-			returnVal = {"status": "NOSTATE"}
+		sensorState = data.sensorState
+		if((sensorState > MAX_SENSOR_RANGE) || (sensorState < MIN_SENSOR_RANGE)) {
+			returnVal = {"status": "SENSOROUTOFRANGE"}
 		} else {
-			locationId = data.locationId
-			if(locationId > ((sensorStates.length)-1)) {
-				returnVal = {"status": "ILLEGALLOCATION"}
-			} else {
-				sensorState = data.sensorState
-				if((sensorState > MAX_SENSOR_RANGE) || (sensorState < MIN_SENSOR_RANGE)) {
-					returnVal = {"status": "SENSOROUTOFRANGE"}
-				} else {
-					sensorStates[locationId] = sensorState
-					returnVal = {"status": "OK",
-									"locationId": locationId,
-									"sensorState": sensorStates[locationId]}
-				}
-			}
+			sensorStates[locationId] = sensorState
+			returnVal = {"status": "OK",
+							"locationId": locationId,
+							"sensorState": sensorStates[locationId]}
 		}
 	}
 	res.json(returnVal)
