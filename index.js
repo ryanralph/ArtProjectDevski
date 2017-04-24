@@ -57,7 +57,6 @@ app.route('/location/').post(function(req, res) {
 		} else {
 			returnVal = sensorStates[0]
 		}
-		sensorStates[locationId] = sensorState
 	}
 	res.json(returnVal)
 	console.log(returnVal)
