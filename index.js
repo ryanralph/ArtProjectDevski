@@ -45,6 +45,24 @@ app.route('/location/:id').get(function(req, res) {
 	returnVal = {}
 })
 
+app.route('/location/').post(function(req, res) {
+	console.log('POST /location/')
+	var data = JSON.parse(req.body.data)
+	locationId = data.locationId
+	if(locationId > ((sensorStates.length)-1)) {
+		returnVal = {"status": "ILLEGALLOCATION"}
+	} else {
+		if(locationId == 0) {
+			returnVal = sensorStates[1]
+		} else {
+			returnVal = sensorStates[0]
+		}
+		sensorStates[locationId] = sensorState
+	}
+	res.json(returnVal)
+	console.log(returnVal)
+})
+
 app.route('/location/:id').post(function(req, res) {
 	console.log('POST /location/' + req.params.id)
 	var data = JSON.parse(req.body.data)
