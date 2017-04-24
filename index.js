@@ -73,12 +73,12 @@ app.route('/location/:id').post(function(req, res) {
 		if((sensorState > MAX_SENSOR_RANGE) || (sensorState < MIN_SENSOR_RANGE)) {
 			returnVal = {"status": "SENSOROUTOFRANGE"}
 		} else {
+			sensorStates[locationId] = sensorState
 			if(locationId == 0) {
 				returnVal = sensorStates[1]
 			} else {
 				returnVal = sensorStates[0]
 			}
-			sensorStates[locationId] = sensorState
 			/*returnVal = {"status": "OK",
 							"locationId": locationId,
 							"sensorStates": sensorStates}*/
