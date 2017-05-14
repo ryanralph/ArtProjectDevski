@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 
 var sensorStates = [0, 0, 0]
 var locationId = 0
-var MAX_SENSOR_RANGE = 9999,
+var MAX_SENSOR_RANGE = 999999999	9,
 	 MIN_SENSOR_RANGE = 0
 
 
