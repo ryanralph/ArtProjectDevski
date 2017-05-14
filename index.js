@@ -7,7 +7,7 @@ var express = require('express'),
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var sensorStates = [0, 0]
+var sensorStates = [0, 0, 0]
 var locationId = 0
 var MAX_SENSOR_RANGE = 1,
 	 MIN_SENSOR_RANGE = 0
